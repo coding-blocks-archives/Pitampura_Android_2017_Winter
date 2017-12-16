@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Counter India</string>
+    <string name="increment">Increment India</string>
+
+</resources>
