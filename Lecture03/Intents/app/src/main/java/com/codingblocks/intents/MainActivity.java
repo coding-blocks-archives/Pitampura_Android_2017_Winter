@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
                 int c = a + b;
 
                 Intent i = new Intent(MainActivity.this, ResultActivity.class);
+                i.putExtra("result", c);
                 startActivity(i);
             }
         });

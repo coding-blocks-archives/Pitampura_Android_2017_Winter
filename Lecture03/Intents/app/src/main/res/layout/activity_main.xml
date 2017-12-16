@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <EditText
+            android:inputType="number"
             android:id="@+id/etVar1"
             android:textSize="24sp"
             android:gravity="center"
@@ -22,6 +23,7 @@
             android:ems="10"
             android:layout_height="wrap_content" />
         <EditText
+            android:inputType="number"
             android:id="@+id/etVar2"
             android:textSize="24sp"
             android:gravity="center"
