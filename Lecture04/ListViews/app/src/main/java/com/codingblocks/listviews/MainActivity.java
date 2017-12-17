@@ -38,7 +38,10 @@ public class MainActivity extends AppCompatActivity {
         lvCourses.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Clicked on" + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,
+                        "Clicked on" + position,
+                        Toast.LENGTH_SHORT)
+                        .show();
             }
         });
     }
