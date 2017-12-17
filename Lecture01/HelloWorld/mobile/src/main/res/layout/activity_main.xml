@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@android:drawable/alert_dark_frame">
+
+        <ImageView
+            android:id="@+id/iconLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-35dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <ImageView
+                android:id="@+id/udacityLogoTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:src="@android:drawable/ic_menu_send" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mountain View, CA 94043" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2465 Latham"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:drawableLeft="@android:drawable/ic_menu_call"
+                android:drawablePadding="16dp"
+                android:gravity="center_vertical"
+                android:text="650-555-5555" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</LinearLayout>
