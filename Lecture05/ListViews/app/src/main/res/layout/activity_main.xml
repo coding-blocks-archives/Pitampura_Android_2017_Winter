@@ -7,7 +7,7 @@
     tools:context="com.codingblocks.listviews.MainActivity">
 
     <ListView
-        tools:listitem="@layout/list_item_course"
+        tools:listitem="@layout/list_item_course_left"
         android:id="@+id/lvCourses"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
