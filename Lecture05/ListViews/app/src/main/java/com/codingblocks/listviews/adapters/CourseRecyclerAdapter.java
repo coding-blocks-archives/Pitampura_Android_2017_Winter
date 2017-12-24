@@ -48,9 +48,9 @@ public class CourseRecyclerAdapter extends RecyclerView.Adapter<CourseRecyclerAd
         holder.tvLectures.setText(currentCourse.getLecturesAsString());
         holder.tvCourseName.setText(currentCourse.getName());
         holder.tvTeacherName.setText(currentCourse.getTeacherName());
-
-
     }
+
+
 
     @Override
     public int getItemCount() {
