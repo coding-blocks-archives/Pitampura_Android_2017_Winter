@@ -34,4 +34,23 @@
         android:layout_below="@+id/textView"
         android:layout_marginTop="68dp"
         android:text="Button" />
+
+    <Button
+        android:id="@+id/btnStartService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:text="Start Service" />
+
+    <Button
+        android:id="@+id/btnStopService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnStartService"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp"
+        android:text="Stop Service" />
 </RelativeLayout>

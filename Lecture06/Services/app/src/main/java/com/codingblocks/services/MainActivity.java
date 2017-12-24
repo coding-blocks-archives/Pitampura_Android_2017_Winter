@@ -1,5 +1,6 @@
 package com.codingblocks.services;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -52,7 +53,27 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 h.postDelayed(r, 10000);
+            }
+        });
 
+        Button btnStartService = findViewById(R.id.btnStartService);
+        btnStartService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MainActivity.this, MyIntentService.class);
+                startService(i);
+
+            }
+        });
+
+        Button btnStopService = findViewById(R.id.btnStopService);
+        btnStopService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(MainActivity.this, MyIntentService.class);
+                stopService(i);
             }
         });
     }
