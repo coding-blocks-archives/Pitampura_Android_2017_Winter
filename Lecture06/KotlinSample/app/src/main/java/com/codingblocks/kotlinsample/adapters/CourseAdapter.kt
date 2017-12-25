@@ -13,9 +13,7 @@ import kotlinx.android.synthetic.main.list_item_course.view.*
 /**
  * Created by arnav on 12/24/2017.
  */
-class CourseAdapter(context: Context, courses: ArrayList<Course>): RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
-    val courses = courses
-    val context = context
+class CourseAdapter(val context: Context, val courses: ArrayList<Course>): RecyclerView.Adapter<CourseAdapter.CourseViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CourseViewHolder {
