@@ -24,7 +24,7 @@ class MainActivityKotlin : AppCompatActivity() {
         btnWriteFile.setOnClickListener({
             when (ContextCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
                 PackageManager.PERMISSION_GRANTED ->
                     writeFile()
@@ -32,7 +32,7 @@ class MainActivityKotlin : AppCompatActivity() {
                 PackageManager.PERMISSION_DENIED ->
                     ActivityCompat.requestPermissions(
                             this,
-                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                             44
                     )
             }
@@ -41,7 +41,7 @@ class MainActivityKotlin : AppCompatActivity() {
         btnReadFile.setOnClickListener({
             when (ContextCompat.checkSelfPermission(
                     this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
                 PackageManager.PERMISSION_GRANTED ->
                     tvFileData.text = readFile()
@@ -49,7 +49,7 @@ class MainActivityKotlin : AppCompatActivity() {
                 PackageManager.PERMISSION_DENIED ->
                     ActivityCompat.requestPermissions(
                             this,
-                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
                             45
                     )
             }
