@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.codingblocks.network.asynctasks.MyAsyncTask;
+
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "ASYNC";
     EditText editText;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    static void waitAsec () {
+    public static void waitAsec() {
         long startTime = System.currentTimeMillis();
         long endTime = startTime + 1000;
         while (System.currentTimeMillis() < endTime);

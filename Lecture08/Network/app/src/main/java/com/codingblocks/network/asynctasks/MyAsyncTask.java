@@ -1,13 +1,15 @@
-package com.codingblocks.network;
+package com.codingblocks.network.asynctasks;
 
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.codingblocks.network.MainActivity;
+
 /**
  * Created by arnav on 12/30/2017.
  */
-class MyAsyncTask extends AsyncTask<Integer, Integer, Void> {
+public class MyAsyncTask extends AsyncTask<Integer, Integer, Void> {
     public interface MyAsyncTaskListener {
         void onProgressUpdate (Integer progress);
         void onPostExecute();
