@@ -54,7 +54,8 @@ public class ShowUrlDataActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(URL... urls) {
             try {
-                HttpsURLConnection connection = (HttpsURLConnection) urls[0].openConnection();
+                HttpURLConnection connection = (HttpURLConnection) urls[0].openConnection();
+
                 if (connection.getResponseCode() >= 200 && connection.getResponseCode() < 300 ) {
                     BufferedReader br = new BufferedReader(
                             new InputStreamReader(connection.getInputStream())
