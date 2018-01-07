@@ -13,6 +13,7 @@ public class ChargeStateReceiver extends BroadcastReceiver {
             return;
         }
 
+
         if (intent.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
             Toast.makeText(context, "CHARGER CONNECTED", Toast.LENGTH_SHORT).show();
         }
