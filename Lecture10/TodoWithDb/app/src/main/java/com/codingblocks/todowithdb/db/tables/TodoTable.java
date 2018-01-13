@@ -30,7 +30,7 @@ public class TodoTable {
             + LBR
             + Columns.ID + TYPE_INT + TYPE_PK_AI + COMMA
             + Columns.TASK + TYPE_TEXT + COMMA
-            + Columns.DONE + TYPE_BOOLEAN + COMMA
+            + Columns.DONE + TYPE_BOOLEAN
             + RBR + SEMI;
 
     public static long insertTodo (Todo todo, SQLiteDatabase db) {
