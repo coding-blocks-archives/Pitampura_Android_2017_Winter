@@ -1,5 +1,7 @@
 package com.codingblocks.googlemaps;
 
+import android.graphics.Color;
+import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -40,8 +43,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        Double cbLat = 28.6969421;
+        Double cbLng = 77.1423825;
+        LatLng codingBlocks = new LatLng(cbLat, cbLng);
+        PolygonOptions cbRect = new PolygonOptions()
+                .strokeColor(Color.RED)
+                .fillColor(Color.argb(100, 200, 100, 100))
+                .add(new LatLng(cbLat - 0.01, cbLng - 0.01))
+                .add(new LatLng(cbLat - 0.01, cbLng + 0.01))
+                .add(new LatLng(cbLat + 0.01, cbLng + 0.01))
+                .add(new LatLng(cbLat + 0.01, cbLng - 0.01));
+        float[] dist = new float[3];
+        Location.distanceBetween(
+                cbLat, cbLng,
+                cbLat + 0.01, cbLng + 0.01,
+                dist
+        );
+        float distanceInMetres = dist[0];
+        mMap.addMarker(new MarkerOptions().position(codingBlocks).title("Coding Blocks"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(codingBlocks, 15));
+        mMap.addPolygon(cbRect);
+
     }
 }
