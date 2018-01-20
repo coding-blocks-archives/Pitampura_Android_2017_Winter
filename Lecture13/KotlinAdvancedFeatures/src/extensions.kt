@@ -7,5 +7,4 @@ fun String.makeSnakeCase (): String =
 fun main(args: Array<String>) {
     println("This is a Sentence".makeSnakeCase())
     println("Hello World".makeSnakeCase())
-
 }

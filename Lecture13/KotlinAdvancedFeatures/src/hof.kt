@@ -9,10 +9,9 @@ fun sayHello (
 
 
 fun main(args: Array<String>) {
-//    fun nameGetter (): String {
-//        return "Arnav"
-//    }
+    val nameGetter: (Int) -> String = { "Gupta" }
+
     sayHello(
             {i,j -> "Arnav $i $j"},
-            {"Gupta" + it})
+            nameGetter)
 }
