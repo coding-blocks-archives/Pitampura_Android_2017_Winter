@@ -21,7 +21,7 @@ public class RedFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_blank, container);
+        View rootView = inflater.inflate(R.layout.fragment_blank, null);
         FrameLayout flBackground = rootView.findViewById(R.id.flBackground);
         flBackground.setBackgroundColor(Color.RED);
 
