@@ -1,12 +1,17 @@
 package com.codingblocks.camera;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.net.Uri;
+import android.os.Environment;
+import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,20 +20,25 @@ import android.widget.Toast;
 
 import com.codingblocks.camera.views.CameraPreview;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Camera.PictureCallback {
     public static final String TAG = "CAM";
     FrameLayout flCamPreviewContainer;
-    Button btnPreview;
+    View btnPreview, btnPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        flCamPreviewContainer = findViewById(R.id.flCamPreviewContainer);
+
+                flCamPreviewContainer = findViewById(R.id.flCamPreviewContainer);
         btnPreview = findViewById(R.id.btnPreview);
+        btnPhoto = findViewById(R.id.btnPhoto);
 
         int camPerm = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA);
@@ -59,7 +69,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "Preview Size: " + picSize.width + "x" + picSize.height);
                 }
 
-                final CameraPreview camPrev = new CameraPreview(this, camera);
+                final CameraPreview camPrev = new CameraPreview(
+                        this,
+                        camera,
+                        getWindowManager().getDefaultDisplay());
+
                 flCamPreviewContainer.addView(camPrev);
 
                 btnPreview.setOnClickListener(
@@ -75,7 +89,40 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                 );
+
+                btnPhoto.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        camPrev.takePhoto(MainActivity.this);
+                    }
+                });
             }
+        }
+
+    }
+
+    @Override
+    public void onPictureTaken(byte[] data, Camera camera) {
+        try {
+            File dcimDir =
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+            File ourDir = new File(dcimDir, "CBCAM");
+            if (!ourDir.exists()) {
+                ourDir.mkdir();
+            }
+            String photoName = "CB" + System.currentTimeMillis();
+            File photo = new File(ourDir, photoName);
+            FileOutputStream fos = new FileOutputStream(photo);
+            fos.write(data);
+            fos.close();
+            sendBroadcast(new Intent(
+                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                    Uri.parse(photo.getAbsolutePath())
+            ));
+        } catch (IOException ioe) {
+            Log.e(TAG, "onPictureTaken: Could not save photo", ioe);
+        } finally {
+            camera.startPreview();
         }
 
     }
