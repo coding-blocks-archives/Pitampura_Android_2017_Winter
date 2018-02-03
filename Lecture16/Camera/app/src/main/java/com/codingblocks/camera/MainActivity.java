@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements Camera.PictureCal
     public static final String TAG = "CAM";
     FrameLayout flCamPreviewContainer;
     View btnPreview, btnPhoto;
+    Camera camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements Camera.PictureCal
                     112
             );
         } else {
-            Camera camera = Camera.open();
+            camera = Camera.open();
             if (camera != null) {
                 Log.d(TAG, "onCreate: We have the camera");
                 List<Camera.Size> picSizes = camera.getParameters()
@@ -110,20 +112,43 @@ public class MainActivity extends AppCompatActivity implements Camera.PictureCal
             if (!ourDir.exists()) {
                 ourDir.mkdir();
             }
-            String photoName = "CB" + System.currentTimeMillis();
+            String photoName = "CB" + System.currentTimeMillis() + ".jpg";
             File photo = new File(ourDir, photoName);
             FileOutputStream fos = new FileOutputStream(photo);
             fos.write(data);
             fos.close();
+            // To Scan photo
             sendBroadcast(new Intent(
                     Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
                     Uri.parse(photo.getAbsolutePath())
             ));
+
+            // To open photo
+            String type = MimeTypeMap.getSingleton().getMimeTypeFromExtension("jpg");
+            Intent photoOpenIntent = new Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(photo.getAbsolutePath())
+            );
+            photoOpenIntent.setType(type);
+            startActivity(photoOpenIntent);
         } catch (IOException ioe) {
             Log.e(TAG, "onPictureTaken: Could not save photo", ioe);
         } finally {
             camera.startPreview();
         }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        camera.startPreview();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        camera.stopPreview();
 
     }
 }
